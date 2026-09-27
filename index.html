@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MzikiHub - Music & Audio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0b0f;
+      color: white;
+    }
+
+    header {
+      background: #15151c;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #292933;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #ff2d55;
+    }
+
+    .tagline {
+      color: #aaa;
+      margin-top: 6px;
+      font-size: 14px;
+    }
+
+    .hero {
+      padding: 35px 18px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #aaa;
+      margin-bottom: 25px;
+    }
+
+    .search-box {
+      max-width: 650px;
+      margin: auto;
+      display: flex;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 16px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .search-box button {
+      background: #ff2d55;
+      color: white;
+      border: none;
+      padding: 0 22px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      margin: 20px 0;
+      font-size: 22px;
+    }
+
+    .songs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 15px;
+    }
+
+    .song {
+      background: #17171f;
+      border: 1px solid #292933;
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .song h3 {
+      margin-bottom: 7px;
+    }
+
+    .song p {
+      color: #999;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .play {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #ff2d55;
+      color: white;
+      font-weight: bold;
+    }
+
+    .download {
+      padding: 10px 14px;
+      border: 1px solid #444;
+      border-radius: 8px;
+      background: transparent;
+      color: white;
+    }
+
+    .ad {
+      margin: 30px 0;
+      min-height: 90px;
+      background: #15151c;
+      border: 1px dashed #444;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 25px;
+      text-align: center;
+      background: #15151c;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">🎵 MzikiHub</div>
+    <div class="tagline">Music & Audio Discovery</div>
+  </header>
+
+  <section class="hero">
+    <h1>Tafuta Muziki Unaoupenda</h1>
+    <p>Search, sikiliza na gundua audio zako unazopenda.</p>
+
+    <div class="search-box">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Andika jina la wimbo au msanii..."
+      >
+
+      <button onclick="searchMusic()">TAFUTA</button>
+    </div>
+  </section>
+
+  <main class="container">
+
+    <div class="ad">
+      ADVERTISEMENT
+    </div>
+
+    <h2 class="section-title">🔥 Nyimbo Maarufu</h2>
+
+    <div class="songs" id="songList">
+
+      <div class="song">
+        <h3>Sample Song 01</h3>
+        <p>Demo Artist</p>
+
+        <div class="buttons">
+          <button class="play" onclick="playSong('Sample Song 01')">
+            ▶ Play
+          </button>
+
+          <button class="download" onclick="downloadSong()">
+            ↓ Download
+          </button>
+        </div>
+      </div>
+
+      <div class="song">
+        <h3>Sample Song 02</h3>
+        <p>Demo Artist</p>
+
+        <div class="buttons">
+          <button class="play" onclick="playSong('Sample Song 02')">
+            ▶ Play
+          </button>
+
+          <button class="download" onclick="downloadSong()">
+            ↓ Download
+          </button>
+        </div>
+      </div>
+
+      <div class="song">
+        <h3>Sample Song 03</h3>
+        <p>Demo Artist</p>
+
+        <div class="buttons">
+          <button class="play" onclick="playSong('Sample Song 03')">
+            ▶ Play
+          </button>
+
+          <button class="download" onclick="downloadSong()">
+            ↓ Download
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ad">
+      ADVERTISEMENT
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 MzikiHub — Music & Audio
+  </footer>
+
+  <script>
+
+    function searchMusic() {
+      const search = document.getElementById("searchInput").value;
+
+      if (search.trim() === "") {
+        alert("Andika jina la wimbo au msanii kwanza.");
+        return;
+      }
+
+      alert("Tunatafuta: " + search);
+    }
+
+    function playSong(song) {
+      alert("Player ya " + song + " itaunganishwa hapa.");
+    }
+
+    function downloadSong() {
+      alert("Download itaunganishwa kwa audio yenye ruhusa ya kusambazwa.");
+    }
+
+  </script>
+
+</body>
+  </html>
