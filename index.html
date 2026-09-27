@@ -1,274 +1,542 @@
 <!DOCTYPE html>
 <html lang="sw">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>MzikiHub - Music & Audio</title>
+<title>MzikiHub - Music & Audio</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #0b0b0f;
-      color: white;
-    }
+body{
+    font-family:Arial,sans-serif;
+    background:#0b0b0f;
+    color:white;
+}
 
-    header {
-      background: #15151c;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid #292933;
-    }
+header{
+    background:#15151c;
+    padding:25px 15px;
+    text-align:center;
+    border-bottom:1px solid #292933;
+}
 
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
-      color: #ff2d55;
-    }
+.logo{
+    font-size:30px;
+    font-weight:bold;
+}
 
-    .tagline {
-      color: #aaa;
-      margin-top: 6px;
-      font-size: 14px;
-    }
+.logo span{
+    color:#ff2755;
+}
 
-    .hero {
-      padding: 35px 18px;
-      text-align: center;
-    }
+header p{
+    color:#aaa;
+    margin-top:8px;
+}
 
-    .hero h1 {
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
+.container{
+    width:94%;
+    max-width:900px;
+    margin:auto;
+}
 
-    .hero p {
-      color: #aaa;
-      margin-bottom: 25px;
-    }
+.search-box{
+    display:flex;
+    margin:25px 0;
+    gap:8px;
+}
 
-    .search-box {
-      max-width: 650px;
-      margin: auto;
-      display: flex;
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-    }
+.search-box input{
+    flex:1;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
+}
 
-    .search-box input {
-      flex: 1;
-      padding: 16px;
-      border: none;
-      outline: none;
-      font-size: 16px;
-    }
+.search-box button{
+    border:none;
+    background:#ff2755;
+    color:white;
+    padding:0 20px;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-    .search-box button {
-      background: #ff2d55;
-      color: white;
-      border: none;
-      padding: 0 22px;
-      font-size: 16px;
-      font-weight: bold;
-    }
+.countries{
+    display:flex;
+    gap:10px;
+    margin-bottom:25px;
+}
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-    }
+.country{
+    flex:1;
+    padding:12px;
+    border:1px solid #33333d;
+    background:#15151c;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
 
-    .section-title {
-      margin: 20px 0;
-      font-size: 22px;
-    }
+.country.active{
+    background:#ff2755;
+    border-color:#ff2755;
+}
 
-    .songs {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 15px;
-    }
+h2{
+    margin:25px 0 15px;
+}
 
-    .song {
-      background: #17171f;
-      border: 1px solid #292933;
-      border-radius: 12px;
-      padding: 18px;
-    }
+.artist{
+    background:#15151c;
+    border:1px solid #292933;
+    padding:18px;
+    border-radius:15px;
+    margin-bottom:15px;
+}
 
-    .song h3 {
-      margin-bottom: 7px;
-    }
+.artist h3{
+    font-size:21px;
+    margin-bottom:5px;
+}
 
-    .song p {
-      color: #999;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
+.country-name{
+    color:#aaa;
+    font-size:14px;
+    margin-bottom:15px;
+}
 
-    .buttons {
-      display: flex;
-      gap: 8px;
-    }
+.song{
+    background:#0f0f14;
+    padding:14px;
+    border-radius:12px;
+    margin-top:10px;
+}
 
-    .play {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      background: #ff2d55;
-      color: white;
-      font-weight: bold;
-    }
+.song-title{
+    font-weight:bold;
+    margin-bottom:10px;
+}
 
-    .download {
-      padding: 10px 14px;
-      border: 1px solid #444;
-      border-radius: 8px;
-      background: transparent;
-      color: white;
-    }
+.buttons{
+    display:flex;
+    gap:8px;
+}
 
-    .ad {
-      margin: 30px 0;
-      min-height: 90px;
-      background: #15151c;
-      border: 1px dashed #444;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #777;
-    }
+.play,
+.download{
+    flex:1;
+    padding:11px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
 
-    footer {
-      margin-top: 40px;
-      padding: 25px;
-      text-align: center;
-      background: #15151c;
-      color: #777;
-    }
-  </style>
+.play{
+    background:#ff2755;
+    color:white;
+    border:none;
+}
+
+.download{
+    background:transparent;
+    color:white;
+    border:1px solid #444;
+}
+
+.no-results{
+    text-align:center;
+    color:#aaa;
+    padding:30px;
+    display:none;
+}
+
+footer{
+    text-align:center;
+    color:#777;
+    padding:35px 10px;
+    margin-top:30px;
+    border-top:1px solid #222;
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">🎵 MzikiHub</div>
-    <div class="tagline">Music & Audio Discovery</div>
-  </header>
+<header>
+    <div class="logo">🔥 Mziki<span>Hub</span></div>
+    <p>Tafuta wasanii na nyimbo unazopenda</p>
+</header>
 
-  <section class="hero">
-    <h1>Tafuta Muziki Unaoupenda</h1>
-    <p>Search, sikiliza na gundua audio zako unazopenda.</p>
+<div class="container">
 
     <div class="search-box">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Andika jina la wimbo au msanii..."
-      >
-
-      <button onclick="searchMusic()">TAFUTA</button>
-    </div>
-  </section>
-
-  <main class="container">
-
-    <div class="ad">
-      ADVERTISEMENT
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Andika jina la msanii au wimbo..."
+            oninput="searchMusic()"
+        >
+        <button onclick="searchMusic()">TAFUTA</button>
     </div>
 
-    <h2 class="section-title">🔥 Nyimbo Maarufu</h2>
+    <div class="countries">
+        <button class="country active" onclick="filterCountry('all',this)">
+            🌍 WOTE
+        </button>
 
-    <div class="songs" id="songList">
+        <button class="country" onclick="filterCountry('Tanzania',this)">
+            🇹🇿 TANZANIA
+        </button>
 
-      <div class="song">
-        <h3>Sample Song 01</h3>
-        <p>Demo Artist</p>
-
-        <div class="buttons">
-          <button class="play" onclick="playSong('Sample Song 01')">
-            ▶ Play
-          </button>
-
-          <button class="download" onclick="downloadSong()">
-            ↓ Download
-          </button>
-        </div>
-      </div>
-
-      <div class="song">
-        <h3>Sample Song 02</h3>
-        <p>Demo Artist</p>
-
-        <div class="buttons">
-          <button class="play" onclick="playSong('Sample Song 02')">
-            ▶ Play
-          </button>
-
-          <button class="download" onclick="downloadSong()">
-            ↓ Download
-          </button>
-        </div>
-      </div>
-
-      <div class="song">
-        <h3>Sample Song 03</h3>
-        <p>Demo Artist</p>
-
-        <div class="buttons">
-          <button class="play" onclick="playSong('Sample Song 03')">
-            ▶ Play
-          </button>
-
-          <button class="download" onclick="downloadSong()">
-            ↓ Download
-          </button>
-        </div>
-      </div>
-
+        <button class="country" onclick="filterCountry('South Africa',this)">
+            🇿🇦 SOUTH AFRICA
+        </button>
     </div>
 
-    <div class="ad">
-      ADVERTISEMENT
+    <h2>🔥 Wasanii na Nyimbo</h2>
+
+    <div id="musicList"></div>
+
+    <div id="noResults" class="no-results">
+        😔 Hakuna msanii au wimbo uliopatikana.
     </div>
 
-  </main>
+</div>
 
-  <footer>
-    © 2026 MzikiHub — Music & Audio
-  </footer>
+<footer>
+    © 2026 MzikiHub - Music & Audio
+</footer>
 
-  <script>
+<script>
 
-    function searchMusic() {
-      const search = document.getElementById("searchInput").value;
+const artists = [
 
-      if (search.trim() === "") {
-        alert("Andika jina la wimbo au msanii kwanza.");
-        return;
-      }
+/* ================= TANZANIA ================= */
 
-      alert("Tunatafuta: " + search);
-    }
+{
+    name:"Diamond Platnumz",
+    country:"Tanzania",
+    songs:["Sample Song 01","Naanzaje","Jeje"]
+},
 
-    function playSong(song) {
-      alert("Player ya " + song + " itaunganishwa hapa.");
-    }
+{
+    name:"Harmonize",
+    country:"Tanzania",
+    songs:["Sample Song 02","Single Again","Aiyola"]
+},
 
-    function downloadSong() {
-      alert("Download itaunganishwa kwa audio yenye ruhusa ya kusambazwa.");
-    }
+{
+    name:"Rayvanny",
+    country:"Tanzania",
+    songs:["Sample Song 03","Tetema","Number One"]
+},
 
-  </script>
+{
+    name:"Alikiba",
+    country:"Tanzania",
+    songs:["Mwana","Aje","Kadogo"]
+},
+
+{
+    name:"Zuchu",
+    country:"Tanzania",
+    songs:["Sukari","Kwikwi","Chaputa"]
+},
+
+{
+    name:"Marioo",
+    country:"Tanzania",
+    songs:["Asante","Bia Tamu","Mama Amina"]
+},
+
+{
+    name:"Jux",
+    country:"Tanzania",
+    songs:["Enjoy","Sugua","Incase"]
+},
+
+{
+    name:"Nandy",
+    country:"Tanzania",
+    songs:["Auna","Dah","Nimekuzoea"]
+},
+
+{
+    name:"Khaligraph Jones",
+    country:"Tanzania",
+    songs:["Mazigiza","Yes Bana"]
+},
+
+{
+    name:"Mbosso",
+    country:"Tanzania",
+    songs:["Nadakwa","Hodari","Baadae"]
+},
+
+{
+    name:"Lava Lava",
+    country:"Tanzania",
+    songs:["Kilio","Utalala","Dede"]
+},
+
+{
+    name:"Kusah",
+    country:"Tanzania",
+    songs:["I Wish","Hello"]
+},
+
+{
+    name:"Barnaba",
+    country:"Tanzania",
+    songs:["Hadithi","Lover Boy"]
+},
+
+{
+    name:"Stamina",
+    country:"Tanzania",
+    songs:["Moyo Mashine","Shuka"]
+},
+
+{
+    name:"Kibonge",
+    country:"Tanzania",
+    songs:["Sample Song"]
+},
+
+/* ================= SOUTH AFRICA ================= */
+
+{
+    name:"Amapiano Artists",
+    country:"South Africa",
+    songs:["Amapiano Mix","Piano Vibes"]
+},
+
+{
+    name:"Kabza De Small",
+    country:"South Africa",
+    songs:["Emhlabeni","Sponono"]
+},
+
+{
+    name:"DJ Maphorisa",
+    country:"South Africa",
+    songs:["Bula Bula","Abo Mvelo"]
+},
+
+{
+    name:"Tyler ICU",
+    country:"South Africa",
+    songs:["Mnike","Bella Ciao"]
+},
+
+{
+    name:"Focalistic",
+    country:"South Africa",
+    songs:["Ke Star","Bopha"]
+},
+
+{
+    name:"Uncle Waffles",
+    country:"South Africa",
+    songs:["Yahyuppiyah","Tanzania"]
+},
+
+{
+    name:"Young Stunna",
+    country:"South Africa",
+    songs:["Adiwele","Bopha"]
+},
+
+{
+    name:"Busta 929",
+    country:"South Africa",
+    songs:["Umsebenzi Wethu","Vula Mlomo"]
+},
+
+{
+    name:"Master KG",
+    country:"South Africa",
+    songs:["Jerusalema","Shine Your Light"]
+},
+
+{
+    name:"Mafikizolo",
+    country:"South Africa",
+    songs:["Khona","Ngeke Balunge"]
+},
+
+{
+    name:"Nasty C",
+    country:"South Africa",
+    songs:["SMA","Strings And Bling"]
+},
+
+{
+    name:"Cassper Nyovest",
+    country:"South Africa",
+    songs:["Tito Mboweni","Good For That"]
+},
+
+{
+    name:"AKA",
+    country:"South Africa",
+    songs:["Lemons","Fela In Versace"]
+},
+
+{
+    name:"Sho Madjozi",
+    country:"South Africa",
+    songs:["John Cena","Shahumba"]
+},
+
+{
+    name:"Nomcebo Zikode",
+    country:"South Africa",
+    songs:["Jerusalema","Xola Moya Wam"]
+}
+
+];
+
+let currentCountry = "all";
+
+function displayMusic(){
+
+    const list = document.getElementById("musicList");
+    const search = document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    list.innerHTML = "";
+
+    let found = 0;
+
+    artists.forEach((artist,index)=>{
+
+        if(
+            currentCountry !== "all" &&
+            artist.country !== currentCountry
+        ){
+            return;
+        }
+
+        const artistMatch =
+            artist.name.toLowerCase().includes(search);
+
+        const matchingSongs = artist.songs.filter(song =>
+            song.toLowerCase().includes(search)
+        );
+
+        if(search !== "" && !artistMatch && matchingSongs.length === 0){
+            return;
+        }
+
+        found++;
+
+        const songsToShow =
+            search !== "" && matchingSongs.length > 0
+            ? matchingSongs
+            : artist.songs;
+
+        let songsHTML = "";
+
+        songsToShow.forEach(song=>{
+
+            songsHTML += `
+                <div class="song">
+
+                    <div class="song-title">
+                        🎵 ${song}
+                    </div>
+
+                    <div class="buttons">
+
+                        <button
+                            class="play"
+                            onclick="playSong('${song.replace(/'/g,"\\'")}')">
+                            ▶️ Play
+                        </button>
+
+                        <button
+                            class="download"
+                            onclick="downloadSong('${song.replace(/'/g,"\\'")}')">
+                            ⬇️ Download
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+        });
+
+        list.innerHTML += `
+            <div class="artist">
+
+                <h3>🎤 ${artist.name}</h3>
+
+                <div class="country-name">
+                    ${artist.country === "Tanzania" ? "🇹🇿 Tanzania" : "🇿🇦 South Africa"}
+                </div>
+
+                ${songsHTML}
+
+            </div>
+        `;
+    });
+
+    document.getElementById("noResults").style.display =
+        found === 0 ? "block" : "none";
+}
+
+function searchMusic(){
+    displayMusic();
+}
+
+function filterCountry(country,button){
+
+    currentCountry = country;
+
+    document
+        .querySelectorAll(".country")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    displayMusic();
+}
+
+function playSong(song){
+
+    alert(
+        "▶️ Unataka kucheza: " +
+        song +
+        "\n\nTutaunganisha audio halisi hapa."
+    );
+}
+
+function downloadSong(song){
+
+    alert(
+        "⬇️ Download ya " +
+        song +
+        "\n\nTutaunganisha file ya audio hapa."
+    );
+}
+
+displayMusic();
+
+</script>
 
 </body>
-  </html>
+</html>
